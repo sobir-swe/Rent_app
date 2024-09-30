@@ -22,11 +22,13 @@
 <body class="font-body text-base text-black dark:text-white dark:bg-slate-900">
 
 <x-navbar/>
-
-<h1>
-    Hello world!
-</h1>
-
+{{$slot}}
 <x-footer/>
+<!-- Back to top -->
+<a href="#" onclick="topFunction()" id="back-to-top"
+   class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-green-600 text-white justify-center items-center">
+    <i class="uil uil-arrow-up"></i></a>
+<!-- Back to top -->
+
 </body>
 </html>
