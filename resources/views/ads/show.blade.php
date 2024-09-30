@@ -21,12 +21,12 @@
 
                     <ul class="py-6 flex items-center list-none">
                         <li class="flex items-center lg:me-6 me-4">
-                            <i class="uil uil-compress-arrows lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <i data-feather="compass" class="uil uil-compress-arrows lg:text-3xl text-2xl me-2 text-green-600"></i>
                             <span class="lg:text-xl">{{ $ad->branch->name }}</span>
                         </li>
 
                         <li class="flex items-center lg:me-6 me-4">
-                            <i class="uil uil-bed-double lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <i data-feather="" class="uil uil-bed-double lg:text-3xl text-2xl me-2 text-green-600"></i>
                             <span class="lg:text-xl">{{ $ad->rooms }} xona</span>
                         </li>
 

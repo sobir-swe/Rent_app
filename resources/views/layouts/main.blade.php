@@ -12,9 +12,17 @@
     <meta name="version" content="2.2.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <!--  Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Unicons -->
+    <link href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" rel="stylesheet">
+
+
     <!-- favicon -->
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
 
 </head>

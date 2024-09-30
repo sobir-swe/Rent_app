@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ad;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
@@ -13,15 +14,16 @@ class AdController extends Controller
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $ads = Ad::all();
-        return view('ads.index', compact('ads'));
+        $branches = Branch::all();
+        return view('ads.index', compact('ads', 'branches'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        //
+        return view('ads.create', );
     }
 
     /**

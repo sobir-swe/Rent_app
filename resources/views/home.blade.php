@@ -28,14 +28,12 @@
                                                        class="form-label font-medium text-slate-900 dark:text-white">Select
                                                     Categories:</label>
                                                 <div class="filter-search-form relative filter-border mt-2">
+                                                    @foreach($branches as $branch) @endforeach
                                                     <i class="uil uil-estate icons"></i>
                                                     <select class="form-select z-2" name="choices-catagory"
                                                             id="choices-catagory-buy"
                                                             aria-label="Default select example">
-                                                        <option>Houses</option>
-                                                        <option>Apartment</option>
-                                                        <option>Offices</option>
-                                                        <option>Townhome</option>
+                                                        <option>{{ $branch->name }}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -84,7 +82,7 @@
                 @foreach($ads as $ad)
                     <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
-                            <img src="{{ \App\Image::show($ad->image) }}" alt="">
+                            <img src="#" alt="">
 
                             <div class="absolute top-4 end-4">
                                 <a href="javascript:void(0)"
