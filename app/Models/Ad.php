@@ -13,4 +13,9 @@ class Ad extends Model
     {
         return $this->belongsTo(Branch::class);
     }
+
+    public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
 }
