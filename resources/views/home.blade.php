@@ -5,7 +5,7 @@
             <div class="grid grid-cols-1 justify-center">
                 <div class="relative">
                     <div class="grid grid-cols-1">
-                        <form action="{{ route('search') }}" method="GET">
+                        <form action="/search" method="GET">
                             <div id="StarterContent"
                                  class="p-6 bg-white dark:bg-slate-900 rounded-ss-none rounded-se-none md:rounded-se-xl rounded-xl shadow-md dark:shadow-gray-700">
                                 <div class="" id="buy-home" role="tabpanel" aria-labelledby="buy-home-tab">
@@ -30,11 +30,13 @@
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     @foreach($branches as $branch) @endforeach
                                                     <i class="uil uil-estate icons"></i>
-                                                    <select class="form-select z-2" name="choices-catagory"
-                                                            id="choices-catagory-buy"
-                                                            aria-label="Default select example">
-                                                        <option>{{ $branch->name }}</option>
-                                                    </select>
+                                                        <select class="form-select z-2 form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0"
+                                                                data-trigger name="branch" id="choices-catagory-buy"
+                                                                aria-label="Default select example">
+                                                            <option value="" hidden="">Filial tanlang</option>
+                                                            @foreach($branches as $branch)
+                                                                <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                                            @endforeach                                                    </select>
                                                 </div>
                                             </div>
 
@@ -100,7 +102,7 @@
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
                                 <li class="flex items-center me-4">
                                     <i class="uil uil-compress-arrows text-2xl me-2 text-green-600"></i>
-                                    <span>{{ $ad->branch_id }}</span>
+                                    <span>{{ $ad->branch->name }}</span>
                                 </li>
 
                                 <li class="flex items-center me-4">

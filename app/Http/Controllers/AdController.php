@@ -37,7 +37,7 @@ class AdController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $ad = Ad::query()->find($id);
         return view('ads.show', compact('ad'));
@@ -65,5 +65,27 @@ class AdController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        $ads = Ad::query()
+            ->when($request->search_phrase, function ($query, $title) {
+                return $query->where('title', 'like', '%' . $title . '%');
+            })
+            ->when($request->branch, function ($query, $branch) {
+                return $query->where('branch_id', $branch);
+            })
+            ->when($request->min_price, function ($query, $min_price) {
+                return $query->where('price', '>=', $min_price);
+            })
+            ->when($request->max_price, function ($query, $max_price) {
+                return $query->where('price', '<=', $max_price);
+            });
+        $branches = Branch::all();
+        return view('home', [
+            'ads' => $ads->get(),
+            'branches' => $branches
+        ]);
     }
 }

@@ -10,6 +10,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/search', \App\Http\Controllers\AdController::class.'@search');
+
 Route::resource('ads', AdController::class);
 
 Route::middleware('auth')->group(function () {

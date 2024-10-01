@@ -26,12 +26,12 @@
                         </li>
 
                         <li class="flex items-center lg:me-6 me-4">
-                            <i data-feather="" class="uil uil-bed-double lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <i data-feather="" class="uil uil-home lg:text-3xl text-2xl me-2 text-green-600"></i>
                             <span class="lg:text-xl">{{ $ad->rooms }} xona</span>
                         </li>
 
                         <li class="flex items-center">
-                            <i class="uil uil-bath lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <i class="uil uil-user lg:text-3xl text-2xl me-2 text-green-600"></i>
                             <span class="lg:text-xl">{{ $ad->gender }}</span>
                         </li>
                     </ul>
