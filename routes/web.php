@@ -14,6 +14,8 @@ Route::get('/search', \App\Http\Controllers\AdController::class.'@search');
 
 Route::resource('ads', AdController::class);
 
+Route::view('/about', 'about');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

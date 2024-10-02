@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 
 class AdForm extends Component
 {
-    public $action = 'ads.store';
+    public $action = '/ads';
     public $ad;
     public $branches = [];
     /**

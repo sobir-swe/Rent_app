@@ -29,9 +29,18 @@ class AdController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): void
     {
-        //
+        $ad = Ad::query()->create([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'price' => $request->get('price'),
+            'rooms' => $request->get('rooms'),
+            'gender' => $request->get('gender'),
+            'address' => $request->get('address'),
+            'branch_id' => $request->get('branch_id'),
+        ]);
+        dd($ad);
     }
 
     /**

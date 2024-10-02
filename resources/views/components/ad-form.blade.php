@@ -13,32 +13,33 @@
                 <label
                     class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer"
                     for="input-file">
-                    <i class="mdi mdi-upload me-2"></i>Rasm yuklash
+                    <i data-feather="image" class="mdi mdi-upload me-2"></i>Rasm yuklash
                 </label>
             </div>
         </div>
 
         <div class="rounded-md shadow dark:shadow-gray-700 p-6 bg-white dark:bg-slate-900 h-fit">
-            @if(request()->route()->getName() == 'ads.update')
-                <input type="hidden" name="_method" value="patch">
-            @endif
             <form id="ads-create" action="{{ $action }}" method="post" enctype="multipart/form-data">
-                @csrf
                 @if ( request()->route()->getName() === 'ads.update')
                     <input type="hidden" name="_method" value="patch">
                 @endif
                 <div class="flex space-x-4">
                     <div class="flex-1">
                         <label for="title" class="font-medium">Sarlavha:</label>
-                        <input name="title" id="title" type="text" class="form-input mt-2" placeholder="Sarlavha" value="{{ $ad?->title }}">
+                        <div class="form-icon relative mt-2">
+                            <i data-feather="edit" class="mdi mdi-pencil-outline absolute top-2 left-4 text-green-600"></i>
+                            <input name="title" id="title" type="text" class="form-input ps-11" placeholder="Sarlavha" value="{{ $ad?->title }}">
+                        </div>
                     </div>
 
+
                     <div class="flex-1">
-                        <label for="gender" class="font-medium">Jins:</label>
-                        <div class="form-icon relative mt-2">
+                        <label  for="gender" class="font-medium">Jins:</label>
+                        <div data-feater="user"  class="form-icon relative mt-2" >
+                            <i data-feather="user" class="absolute top-2 left-3 text-green-600" ></i>
                             <select id="gender" name="gender" class="form-input ps-11">
                                 @if (!isset($ad))
-                                    <option value='0'>Jins tanlang</option>
+                                    <option value='0' hidden="">Jins tanlang</option>
                                 @endif
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -50,7 +51,7 @@
                 <div class="md:col-span-12 col-span-12">
                         <label for="description" class="font-medium">Ta'rif:</label>
                         <div class="form-icon relative mt-2">
-                            <i class="mdi mdi-text-box-outline absolute top-2 start-4 text-green-600"></i>
+                            <i data-feather="file-text" class="mdi mdi-text-box-outline absolute top-2 start-4 text-green-600"></i>
                             <textarea name="description" id="description" class="form-input ps-11"
                                       placeholder="E'lon bo'yicha ta'rif...">{{ $ad?->description }}</textarea>
                         </div>
@@ -59,34 +60,37 @@
                     <div class="md:col-span-12 col-span-12">
                         <label for="address" class="font-medium">Manzil:</label>
                         <div class="form-icon relative mt-2">
-                            <i class="mdi mdi-map-marker-outline absolute top-2 start-4 text-green-600"></i>
+                            <i data-feather="map-pin" class="mdi mdi-map-marker-outline absolute top-2 start-4 text-green-600"></i>
                             <input name="address" id="address" type="text" class="form-input ps-11"
                                    placeholder="Manzil:" value="{{ $ad?->address }}">
                         </div>
                     </div>
+
                     <div class="md:col-span-12 col-span-12">
                         <label for="branch" class="font-medium">Filial:</label>
                         <div class="form-icon relative mt-2">
+                            <i data-feather="clipboard" class="mdi mdi-map-marker-outline absolute top-2 left-4 text-green-600"></i>
                             <select
-                                class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0"
-                                id="branch" name="branch_id">
-
-                                @if (!isset($ad))
+                                class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0 text-left"
+                                id="branch" name="branch_id"
+                                style="padding-left: 45px;">
+                            @if (!isset($ad))
                                     <option value='0'>Filialni tanlang</option>
-                                @endif                                @foreach ($branches as $branch)
-                                    @if (isset($ad) && $branch->id === $ad->branch_id)
-                                        <option value='{{$branch->id}}' selected>{{$branch->name}}</option>
-                                    @else
-                                        <option value='{{$branch->id}}'>{{$branch->name}}</option>
-                                    @endif
+                                @endif
+
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}" {{ isset($ad) && $branch->id === $ad->branch_id ? 'selected' : '' }}>
+                                        {{ $branch->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+
                     <div class="col-span-12">
                         <label for="price" class="font-medium">Narxi:</label>
                         <div class="form-icon relative mt-2">
-                            <i class="mdi mdi-currency-usd absolute top-2 start-4 text-green-600"></i>
+                            <i data-feather="dollar-sign" class="mdi mdi-currency-usd absolute top-2 start-4 text-green-600"></i>
                             <input name="price" id="price" type="number" class="form-input ps-11"
                                    placeholder="Narxi($):" value="{{ $ad?->price }}">
                         </div>
@@ -94,13 +98,15 @@
                     <div class="col-span-12">
                         <label for="rooms" class="font-medium">Xonalar:</label>
                         <div class="form-icon relative mt-2">
+                            <i data-feather="home" class="mdi mdi-map-marker-outline absolute top-2 left-4 text-green-600"></i>
                             <input name="rooms" id="rooms" type="number" class="form-input ps-11"
                                    placeholder="Xonalar:" value="{{ $ad?->rooms }}">
                         </div>
                     </div>
 
 
-                <button type="submit" id="submit" name="send"
+
+                    <button type="submit" id="submit" name="send"
                         class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5">
                     <i class="mdi mdi-content-save me-2"></i>
                     Saqlash
